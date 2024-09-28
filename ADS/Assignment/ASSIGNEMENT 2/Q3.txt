@@ -1,0 +1,22 @@
+//time complexity=0(n)
+//space complexity=0(n)
+
+import java.util.*;
+class Q3{
+	public static void main(String args[]){
+	 Scanner sc = new Scanner(System.in);
+	 String str = sc.nextLine();
+	 int n = str.length();
+	//System.out.print(str);
+	StringBuilder sb = new StringBuilder();
+	  for(int i =0;i<n;i++){
+	  char ch = str.charAt(i);
+		if(ch !=' ')
+		{
+			sb.append(ch);
+		}
+	  }
+			System.out.println(sb);
+	  
+	}
+}

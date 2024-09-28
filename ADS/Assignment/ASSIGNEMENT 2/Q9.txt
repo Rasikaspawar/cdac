@@ -1,0 +1,25 @@
+
+//TIME AND SPACE COMPLEXITY IS O(N)//
+
+import java.util.*;
+class Q9{
+	public static void main(String args[]){
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		String str1=str;
+		int n = str.length();
+		StringBuilder sb = new StringBuilder();
+		for(int i=n-1; i>=0;i--)
+			{
+				char ch = str.charAt(i);
+				sb.append(ch);
+			}
+			System.out.println(sb);
+		if(sb.toString().equals(str1)){
+			System.out.println("it is palindroma");
+		}
+		else{
+			System.out.println("it is not palimdrom");
+		}
+	}
+}

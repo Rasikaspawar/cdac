@@ -1,0 +1,17 @@
+///time  o(log n)and space complexity is 0(1)
+import java.util.*;
+class Q7{
+	public static void main (String args[]){
+		Scanner sc = new Scanner (System.in);
+		int n = sc.nextInt();
+		int last=0;
+		int reverse=0;
+		//int m = n.length();
+		while(n!=0){
+			last = n%10;
+			reverse = reverse*10+last;
+			n= n/10;
+			//System.out.println(reverse);
+		}System.out.println(reverse);
+	}
+}
