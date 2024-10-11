@@ -1,0 +1,297 @@
+Mysql- SQL(16 commands)
+SQL - STRUCTURED  QUERY LANGUAGE
+commonly pronounced as "Sequel".
+conforms to ANSI and ISO standards
+common for all RDBMS
+4 sub division of sql
+1.DDL-Data definition Language) (create,Drop, alter)
+2.DML-Data Manipulation Language (Insert, update, Delete)
+3.DCL-(Data control Language)( Grant, Revoke)
+4.DQL-(Data Query Language)(select)
+
+*Extra in Mysql and Orcale:-
+-Not an ANSI standards:-
+-5th component of sql:
+-DTL/TCL(data transaction language)/(transaction control language)
+(commit , Rollback, savepoint)
+-DDL (Rename,Truncate)
+Extra in Oracle RDBMS only
+ DML(merge, upsert)
+ ***********************DATATYPES OF MYSQL***********************
+ Char - allows any charater.
+		- could be alpha- numeric also.
+		-max 255 charcter.
+		-fixed length.
+		-wastge of Hard disk space.
+		-searching and retrival will be fast.
+		e.g. Roll_No, EMPNO,PANNO,AADHAR_CARD_NO,ETC.
+		-default width 1.
+Varchar - allows any character.
+		- could be alpha-numeric also
+		- max 65,535 character(64 kb-1)
+		- varible-length.
+		- conserve on Hard Disk.
+		-seraching and retrieval will be slow.
+		
+Longtext - allows any charcter.
+		 - could be alpha-numeric also
+		 - max 4, 294,967,295 character
+		 -4gb -1
+		 - e.g FEEDBACK, COMMENTS,REMARKS,POST,DISCRIP,RESUME,EXPERINCE,ETC.
+		 -stroed outside the table.
+		 -stored outside the row.
+		 -stored away from the table
+		 -stored away from the row.
+		 - Mysql maintains a Locator (HD pointer)from the longtext column to the longtext data.
+		 - performance of other column in the table is not affected 
+		 - not used for those column that would be used for seraching
+		 - used for those column that are on;y for storage and display purpose.
+		 - width  does not have to be specified 
+		 - e.g  FEEDBACk Longtext
+		 -varible length.
+		 
+4.Binary- fixed -length binary string
+		- max upto 255 Bytes of binary data.
+		-small images
+		e.g BARCODES,QR_CODES, PICTURE-CODE.
+5.varbinary-varible-length binary string
+			- max upto 65,535 Bytes of binary data.
+			-ICONS,GIFS WITH SOUND, THUMBNAIL,FAVICON,ETC
+			- no defult width; width has to be specified
+			-both of the above are stored as charcter string of 1's and 0's.
+6. Blob(Binary large object)
+
+
+7. LongBlob-(long binary large object)
+		- max upto 4,294,967,295 bytes of binary data
+		- 4 gb-1
+		- e.g PHOTOGRAPHS, CHARTS, GRAPHS, MAPS, SOUND, MUSIC,VIDEOS, ETC
+		-width does not have to be speicifed
+		e.g photograogh longblob
+		-stored outside the table
+		- stored away from the table
+		- stored away from the table
+		- stored away from the row.
+		- Mysql maintains a loctor (HD  pointer) from the longblob cloumn to the blog 
+8.INTGER types(excet value);-
+			-signed or unsigned
+			-by default it is signed.
+		**tinyint(1 byte)
+		**smallint (2 byte)
+		**mediumint(3 byte)
+		**Int (4 byte)
+		**BigInt(8byte)
+9. Floating -point types(Approximate values):-
+		- *float - upto 7 decimal
+		-* Double upto 15 decimal
+***fixed -point types(Exact value):-*****
+		 1.Decimal 
+		      - stores double as  a string e.g "653.8"
+			  -max number of digits is 65
+			  -used when it is imp to preserve the exact precision, for example wuth monetary data.
+10.Boolean 
+   * logical datattype
+   - true and false evaluate to 1 and 0 reserved
+    -can insert true, flase, 1 or 0
+    -output willdisplay 1 or 0
+	e.g. MARITAL_STATUS
+11. Date and Time datattype:-
+ **date- 1st Jan 1000 AD to 31st Dec 9999AD
+		- no problem of Y2k in Mysql
+		'YYYY-MM-DD' is the default date format in Myql
+		e.g '2024-10-09'
+		- 'YY-MM-DD' is the also supported
+		- year values in the range 70-99 are converted to 1970-1999
+		*year values in the range 00-69 are converted to 2000-2069
+		'2024-10-09' or '24-10-09'
+		'1947-08-15; '47-08-15'
+		- 1970 is known as the year of the Epoch
+	*date1-date2-> return the number of days between the 3 dates.
+			 1st jan 1000 AD-> 1
+			 2nd jan 1000 AD ->2
+			 3rd  Jan 1000 Ad ->3
+			 9th oct 2024 AD -.1657218(number of days since 1st jan 1000 AD)
+			 * internally date is stored as a number it is
+		
+ ** Time 
+		*'hh:mm:ss' or'HHH:MM:SS'
+		- Time values may range form'-838:59:59' to'838:59:59'
+		-time1-time2
+ ** DateTime-date and time is stored together
+			-'YYYY-MM-DD hh:mm:ss' is the default datetime format in mysql
+			-'1000-01-01 00:00:00' to '9999-12-31 23:59:59'
+			datetime1-datetim2-> returns number of days, reminders hours, minutes, and seconds between the two.
+ **year- YYYY
+		- 1901 TO 2155
+					*************create table************
+ ******rules for tablenames,columnname,variblesname:
+     * max 30 charcters
+	 * A-Z,a-z,0-9 allowed
+	 eg. emp,Emp,EMP,eMp etc.
+*Tablename is case-insensitive for Mysql DB under windows.
+*Tablename is case -sensitive for Mysql DB under Unix/Linux.
+*table name has to begin with an alphabet.
+*Special charcters $,#,_ allowed.
+*in Mysql, to use reserved charcters such as # in tablename and colunmnname,
+ enclose it in back -quotes(``)(back-quotes).e.g `EMP#`
+ *134 Reserved words not allowed in tablename(Drop,create,)but we you want 
+     to create this name table create then write in" ".
+-EMP2024-allowed
+-2024EMP- not  allowed 
+IN MYSQL -you can have max 4096 columnper table provided the row size<=65,535 bytes
+- no limit on the number of rows per table, provided the tablesize <= 64 terabytes.
+Largest table in the world->
+			orderds table of amazon.com -> 100's of Terabytes daily
+
+1.----------------------------commond of create table -----------------------			
+Create table EMP
+(
+Empno char(4),
+Ename varchar(25),
+salary flaot,
+city varchar(15),
+Dob date );
+**** ";" is known as delimiter (also known as terminator)
+**** it indicates end of commands.
+**** Sql commands are case- insensitive.
+**** but table name and  is case sensitive.
+
+2.----------------------------Insert the data------------------------
+Syntax of insert command :---insert into table name
+values(data );
+ 1.*** insert into EMP
+ values('1','Amit',5000,'Mumbai','1995-01-15');
+ *when you are inserting, the data is case-sensitive.
+ * for char, varchar, date, time, datetime use '  '.
+ --* 'YYYY-MM-DD' is the default date format in mysql '1995-01-15' or'95-01-15'
+ 
+ **********2. Recommended:- 2nd methode*******
+     1. Flexible
+	 2. Readable
+	 3. In future if you ALTER the table and add a column, then this INSERT statement will continue to work 
+			insert into EMP(Empno,salary, Ename, city, dob)
+			values('2',6000,'kings','delhi','1990-02-20');
+3. 
+  insert into EMP (Empno,salary)
+  values('3',4000);
+    - remaining all colums store the null values.
+	 -null values only one bytes stroage. but in last 2 cloumns  are present null value then no space is store.
+	 -Special treatement given to null value in all RDBMS.
+	  -null value is independent of datatype
+	  -null value occupies only 1 bytes of storage
+	  -those columns that are likely to have a large number of nulls, 
+	     it's recommended that preferably they should be specified 
+	     at the end of the tabble structure, to conserve on HD space.
+4. insert into EMP
+values('3''attt');////error it is not allowed
+5. insert into EMP
+values('4','amp',null,Null,null);//it is ok it is allowed.
+6.insert into EMP
+values ('6', Null, 5000, null,null);//ok 
+
+
+****we can write INSERT multiple row in a table using one insert eStatementes
+insert into EMP values
+('1','as',345,'mum','1995-09-25'),
+('2','ar',34,'san','1994-09-15'),
+('3','as',345,'mum','1995-09-1'),
+('4','ae3',3459,'mumr','1994-02-12'),
+('5','qw',null,null,null,null);
+
+
+OR
+
+
+*********************************select the data form table **********************
+Syntax of SELECT
+    select * from tablename;
+	*internally how to work select commandis wroking
+	1.read .
+	2. compile.
+	3. plan.
+	4.Execute.
+-* is known as metacharcter(all coumns)
+----------------------to restrict the colums:(use select)-----------------
+1.select empno,ename *from emp;
+- output is only empno,ename columns is display.
+2. select deptno,job,ename,sal,hiredate from emp;
+-output is deptno,job ,ename ,sal,hiredate this order colum is display.
+ *the position of column in SELECT statement will determine the position of column in the output.
+ * this you will write as per Client requirements.
+ ----------------------------------------------------------------------------------
+ *****to restrict the rows   (WHERE clause is used)
+ syntax 
+    select *from emp where colum nu = value
+	eg. 
+1.select *from emp
+	where dept no=10;
+	-output is d=show only dept no 10 rows are dispalay
+*where clause is used for searching.
+*searching takes place in DB server HD
+* where clause is used to restrict the rows.
+*where clause is used to retrive the rows from DB server  HD to server RAM.
+2. select* from emp
+where sal>2000;
+-output is shows only salary is greater than 2000 this employee data is display.
+*************************Relational operators in MYSQL:-********************
+1.>
+2. >=
+3.<
+4.<=
+5.!= or <>
+6.=
+Relational operators is exectued is only this manner.
+3. select *from emp
+ where sal >2000 and sal<3000;
+ -output is shows between the 2000 and 3000 salary employee data is display.
+ ***************************logical operators in mysql****************************
+ NOT=no one is satsified.
+ AND-both are true /satsified.
+ OR = any one is satsified.
+ ***logical operators are exectue is above mannaers.
+4. select *form emp
+where deptno =10 or sal>2000 and sal<3000;
+output-
+5. select *from emp
+where (deptno =10 or sal> 2000)and sal<3000;
+
+6. select * from emp
+where job = 'MANAGER';
+output- shows the all job which is manager all data of employee is display.
+*for char, varchar,date,time, and datetime use ' '
+*when we are write 'manager' this way also this is show output is same is above.
+***In Mysql-
+ * when you are searching , quries are case-sensitive
+ * more user-friendly
+*** In other RDBMS:-
+  * when you are searching, quries are case-sensitive
+  * more secure.
+------------------------------------------------------------------------
+7.select *from emp 
+where job='MANAGER' and job='CLERK';
+output- nothing is display.
+8.select *from emp 
+where job='MANAGER' or job='CLERK';
+output- all manager and clerk both job display.
+8.  select ename, salary,salary*12 from emp;( in given table data salary *12 column is not present  but only this query salary *12 is created only this query and display after this query execution this column is distroyed. )
+salary*12 - computed column, calculted column, virtual column, fake column, pseudo column
+********Arithmatic operators*************
+***jitne colum titke array*****
+1.()
+2. /
+3. *
+4.+ 
+5.-
+
+******************************alias(another name)*****************
+ALIAS THE any column name is used 'as'
+9.select ename, salary, salary*12 as "ANNUAL" from emp;
+in above query salalry*12 column is created only display time this column is now display with annual column name only for exectuing time after exectution this coilm=unm is erase.
+* as= ANSI SQL.
+*as= optional of mysql.
+10.select ename, salary, salary*12 as annual from emp;
+-ouput is disply annunal comlumn name is automaticalyy converted into  ANNUAL name(means in uppercase)
+11. select ename, salary, salary*12 as "Annual Salary in $" from emp;
+12.select ename, salary, salary*12 "Annual " from emp;
+-output is same as above but " " and 'as' is optional
+*****in Alias not used where clause.

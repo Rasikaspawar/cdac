@@ -1,0 +1,302 @@
+
+
+
+
+
+
+*projection- when you SELECT specific rows; it is know a PROJECTION.
+*	when you perform SELECTION or PROJECTION , you are viewing a subset of the data.
+to see which table are created 
+ --show tables
+ -------------------------------------------------------------------------
+*to see structure of   table:-
+ --- desc emp;(describe)
+--------------------------------------------------------------------------
+ *select distinct job from emp;
+ -output is only original values present which is present in job column.
+- to supress the duplicates values.
+--------------------------------------------------------------------------------
+*whenever you use DISTINCT sorting takes place internally in the server RAM.
+* if you have LARGE number of rows in the table, this SELECT statement will be slow.
+-----------------------------------------------------------------------------
+**2)select distinct job, ename from emp;
+output
+------------------------------------------------
+***----- DISTINCT will work on combination of all the columns that are present in SELECT statement.
+3). select(distinct job),ename from emp;//error
+4). select deptno, job, ename,sal, hireadate from emp;
+****Q. why isn't 
+ * in a dbms , data is stored inside a file.
+ * inside a file, rows are stored sequatially
+ -in DBMS; there is concept of row numbering 
+ -in RDBMS, table is not a file; every row is a file.
+ - In RDBMS, rows of the table are not stored sequentially ; they are no tstored in any specific order.
+ -  Rows of the table are scattered(fragmented ) all over the DB server HD.
+- The reasons why RDBMS does this is speed up the INSERT statement 
+-In a multi-user environment, when multiple users are inserting row in the same table simulataneously, if mysql were to store the rows sequatially then the INSERT  operations would be very be slow 
+-When you INSERT a table, wherever mysql finds the free space in the DB server D, it will store the row there 
+-When you SELECT from a table, the seraching is sequatially 
+-When you SELECT from a table, the order of rows in the output depends on the row address; it will always be in ascending order of row address.
+-Once you INSERT a row, the row address is constant
+-when you UPDATE a row , if the row length is increasing and the free space is not available, then the entire row is moved to some other address on the DB server HD
+-Later when you SELECT from the table, you may see that row at some other location 
+-Its only in the case of VARCHAR that the row length may increase or decresase
+-Hence it is not possible to see the first 'N' rows of a table, or the last 'N' rows of a table this is common for all RDBMS.
+-There  is a system table which stores all the tablenames and their respective row addresss
+-when you SELECT from a table, mysql will not search the entire DB server HD; rather it will go to that system table, and  retrieve the rows of the SELECTed table accordingly.
+*SQL---------------------------------------------(ORDER BY Clause)(by defulat it is ascending manner)-------------------------
+*select depto, job, ename, sal, hiredate from emp order by ename;
+-- output is---- print   ename column which is present in emp table print ascending order. 
+---------------------------------------------------------------------------------
+-----*select deptno , job, ename, sal,hireadate from emp order by ename desc;
+---output print column ename desecnding manner.
+--------------------------------------------------------------------------
+**select depetno, job, ename, sal, hireadate from emp order by deptno, job;
+--Output- print the deptno and job in ascending manner chya pramene remaing print hotil
+-------------------------------------------------------------------------------
+** select
+   odered by country , state, city;
+---  --------------------------------------------------------------------------
+** no upper limit on the number of columns in ORDER by clause.
+** if you have a larger number of rows in the table, and a larger numner of columns on ORDER by clause,
+- then the SELECT statement will be slow, because that much sorting has to take place in server RAM
+** -------------------------------------------------------------------------
+** select deptno, job, enaem, hireadate from emp 
+  where deptno = 10
+  order by ename;
+-- output - only 10 depet no  employee name is print in acednding manner.
+* WHERE clause has to specificed BEFORE the ORDER by clause 
+*SELECT statement executes from tp tp bottom anf left to right 
+* WHERE clause is used for searching; searching takes place in the DB server HD
+* WHERE clause is used to restrict the rows 
+* WHERE clause is used to retrieve the rows from DB server Hd to server RAM
+* ORDER by clause sorting takes place in server RAM
+* ORDER by clause is the LAST clause in SELECT statement.
+------------------------------------------------------------------------------------
+*** select ename, sal*12 from emp 
+order by sal*12;
+output-
+
+
+
+--------------------------------------------------------------------------------------
+*** SELECT* from emp
+Where ename > 'A' and ename <'B';
+-output - in emp table only start A name  all rows are print.(here Ascii value is compare then output is show)
+****Blank- padded comparision semantics:
+when you compare 2 strings of differnt lengths, the shorter of the 2 strings is temporaily padded with blank spaces on RHs such that their lengths become equal; then it will start the comparision chara---------------remaing--
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+* select *from emp
+ where ename>='A' and ename <B';
+
+output---
+---------------------------------------------------------------------------------------
+*select *from emp 
+where ename >= 'A' and ename< 'C';
+ output-
+ -------------------------------------------------------------------
+Wildcard (used for matching)
+% --- any charcter and any number of charcters
+_ any 1 charcter
+
+
+*select *from emp
+where ename like 'A%';
+output=
+----------------------------------------------------------------------------------
+*select form emp 
+where ename like = 'A%';
+output-
+------------------------------
+*select *from emp
+where ename like 'A%';
+output-
+-------------------------------------------------------------------------------
+select *from emp
+where ename like 'A%';
+output - ending with A those  print all
+--------------------------------------------------------------------------
+*select *from emp
+whre ename like'%A%';
+output- those print all contain print which has A (where A is present like in starting,ending or middle or anywhere)
+-------------------------
+*select * from emp
+where ename not like 'A%';
+output---
+---------------------------------------------------------
+Select* from emp
+where ename like '__A%';
+output -
+------------------------------------------------------------
+Select * from emp
+where ename like '----';
+output- any word which have 4 charcter/letter
+------------------------------------------------
+Select * from empWhere ename like'-I--';
+output-only whihc is have 2nd letter is 'I';
+--------------------------------------------------
+select * from emp
+where  ename like'_I%';
+output- anywheree in word where I is presdnt this all are print 
+----------------------------------------------------------------
+sql special operators(like, bbetween)
+
+1.Select * from emp
+ wehre sal>= 2000 and sal<=3000;
+ output- larger than 2000 and less than 3000
+2. select * from emp
+ where sal between 2000 and 3000;-> inclusive
+ output- it is same as above 
+ --------------------------------------------------------------
+ 3. Select *from emp
+ where sal not between 2000 and 3000;<-exclusive
+ output- reamining all is print only in between 2000 to 3000 range.
+ -----------------------------------------------------------------
+ 1. select * from emp
+  where hiredate >='2-23-01-01' and  hireadate <='2023-12-31';
+output-in range between which is hiredate  those employee deatils are display.
+---------------------------------------------------------------------
+select * from emp
+where hireadate between '2023-01-01' and '2023-12-31';
+output- in range between which is hiredate  those employee deatils are display.
+--------------------------------------------------------------------------------
+select * from emp
+where ename=
+
+
+
+
+
+ANY-> logical OR 
+IN-> logical OR
+--------------------------------------------------------------------------------
+this are not to use with in operator
+select * from emp 
+where deptno in(10,20,30)
+select * from emp 
+where deptno not in(10,20,30)
+select * from emp 
+where deptno =any(10,20,30)
+select * from emp 
+where deptno !=any(10,20,30)
+select * from emp 
+where deptno >=any(10,20,30)
+select * from emp 
+where deptno <any(10,20,30)
+select * from emp 
+where deptno >any(10,20,30)
+select * from emp 
+where deptno <any(10,20,30)
+select * from emp 
+where deptno <=any(10,20,30)
+---------------------------------------------------------
+* Any operator is overloade(operator overloading)
+IN operator is faster than ANY operator.
+Any operator is more powerful than IN operator
+with the IN operator , you can only check for IN and NOT IN
+ with the ANY operator, you can check for = ANY, !=ANY, >ANY,>=ANY,<ANY,<=ANY
+ 
+ 
+ 
+ 
+ 
+ ---------------------------------------------------------
+ *IN operator is supported by mysql
+ * ANY opeator is supported by mysql only when it is used with sub-query.
+ ---------------------------------------------------------------------
+ 1. select * from emp
+ city in ('Mumbai', 'Delhi');
+ output-
+ ------------------------------------------------------------------------
+ DDL- Create,Drop
+ 2. DML- insert,update,Delete
+ 3. DQL- SELECT
+ -----------------------------------------------------
+ ----------------------------------UPDATE-----------------------
+ syntax-- update tablename
+          set column name = new value
+		   where condition;
+--------------------------------------------------------------------
+useing upadate query
+ 1. upadate emp
+  set sal = 10000;
+  where empno =1;
+  output- empno 1 empolyee salary is chnge/ modify 10000
+---------------------------------------------------------
+2. upadate emp
+set sal = sal +sal*0.4
+where empno =1;
+--------------------------
+3. upadate emp
+set sal =10000, city = 'pune'
+where empno=1;
+output - empno 1 is change salary is 10000 and city is also change pune.
+----------------------------------------------------------------------------------
+** you can UPDATE multiple rows and mutliple columns simulataneously but you can UPDATE only 1 table in a single command'
+* if you want to update 2 or more tables, then a separate UPDATE command is needed for each table.
+---------------------------------------------------------------------------------------
+--------------------------********************DELETE************--------------------
+1. delete from emp
+ where empno=1;
+ output   - delete 1st row
+-----------------------------------------------------
+2. delete from emp 
+  wehre city='mumbai';
+output- delete the mumbai column
+----------------------------------------------------
+3. delete from emp;
+ output - allrows and all columns is delete(table is empty but still it is present)
+ 
+ ------------------------------------------
+ ------------------------------DROP----------------------------
+ drop table emp;
+ output- delted the emp table
+ ----------------------------------------------------------
+ 2. drop table emp , dept;
+ output- table emp, and dept is both are deleted.
+ ---------------------------------------------------
+ * you canont have a WHERE clause with Drop table beacuse drop table is ddl command
+ ----------------------------------------------------------------------------------------------------
+ --------------------------------------------------------------------------------
+ **************************TRANSCATION PROCESSING********************************
+ *commit will save all the DML changes since the last committed  state
+ * commit work;
+		or 
+	  commit;
+* work is optional in MYSQL
+* when the user issues a commit, it is known as End of Transcation 
+*commit will make the transcation permanent.
+Total work done = T1+T2+T3+.....+Tn;
+*Total work done = sum of work done in individual transcations.
+* when to issues the commit is decided by the end user, and it depends on the logical scope of work.
+* RollBack will undo all the DML chnges since the last committed state
+* what is committed cannot be Rolled back
+rollback work;
+	or
+rollback;
+*only the DML command are afftected by RollBackand commit.
+*Any DDL command is automatically commits; not only will it commit itself, 
+	it will commit all DML changes before it.
+* when you EXIT from sql, the sysetm automatically commits.
+* Any kind of poer failure, network failure, system failure, 
+	PC reboot, windows close,improper exit from SQL, etc.; 
+	your last uncommitted Transcation is automatically Rolled Back.
+*******************************SAVEPOINT*********************
+* savepoint is a point within your work
+* savepoint is similar to a bookmark
+* savepoint is similar to a milestone withing your transcation
+* you can Rollback to a savepoint
+* you cannot coomit to A SAVEPOINT
+* commit will save all the DMLchanges since the last commited state
+* when you Rollback or commit, the intermediate savepoints are cleared; if you want to use them again, then you will have to reissue them in some new work
+*rollback work to pqr;
+or rollback to pqr;
+* work is optional in mysql
+* Rollback  is sequntially 
+** within a TRANSCATION , you can have 2 savepoints with the same name
+* the latest savpoint superceds(higher priority)the previus one
+* the older savepoint no longer exists.
+**************************************set autocommit************************
+Environment setting:-
+* set autocommit =1; //switching is on;
+* set autocommit=0;// switching is off;

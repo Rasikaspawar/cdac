@@ -1,0 +1,61 @@
+-origin of the word computer->coputer(latin word)->to compute/calculate.
+-data(input)->computer->information(output)(it is also know processed data.)
+-information(output)(it is meaningful data)(data on whose basis the management can take some decision or you can perform some action).
+-processing -> work done by the computer to convert data into information.
+- Database -> collection of large amount of data
+-DBMS-Database management system
+		*readymade software that helps you to manage your data
+		*ANSI definition-> collection of programs that allows you to Insert,update,delete,and process 
+		*various DBMS availble:-
+		e.g. Ms-Excel,dBase,Foxbase,Foxpro,Clipper,,Dataease,Dataflex,ADvanced REvelation,DB vista, Quattro pro, lotus 1 -2-3,etc.
+ME-Excel program-> is know as a Macro(VBA programming)
+*************************MYSQL*******************************
+RDBMS(Relational Database Management System)
+Oracle(RDBMS+OODBMS(Object Oriented DBMS)->ORDBMS(OBJECT RELATIONAL DBMS)
+			********DBMS VS RDBMS***********************
+DBMS(e.g.MS Exel,Foxrpo,etc.)
+a. Fields
+b.record
+c.file
+1.naming convention are different (nomenculutre is different)
+5. hight n/w traffic.
+6. processing is on client machine.
+7.slow and	expensive.
+client-server architechture is not spported.
+RDBMS(E.g. MYSQL,Oracle,postgres,etc.)
+a. columns,attribute,key.
+b. row, tuple, enetiy		
+c.table,Relation, Entity class.
+1.naming convention are different (nomenculutre is different)
+2.Relationship between 2 tables can be specified at time of table creation(e.g Foreign key constraint)
+3.less programming.
+4. less time required for s/w developement.
+5.low n/w traffic.
+6.processing is on server machine(known as client-server architecture).
+7. Faster(in terms of n/w traffic) and cheaper(in terms of h/w cost,n/w cost,platform cost, infrastructure cost).
+8.Most of the RDBMS support client-server architechture(expection would be MS access).
+9. most of the RDBMS suppport Distributed databases.
+10. mutliple level of security
+a.logging in security.- (MYSQL databases username and password.)
+b. commond level security.-( privilege to give certain MYSQL commands, e.g. CREATE TABLE, CREATE PROCEDURE, CREATE FUNCTION,CREATE USER, ETC)
+c.object level security.-(To access the table of other users)
+*server is the store the data.
+*client is a access the data.
+*NTFs- new technology fosle system.
+***Table is a not a File **Internally every row is file****
+-----------------------------which RDBMS USED-----------------
+VARIOUS RDBMS Availble--------------
+informix -fastest in terms of processing speed.
+orcal-most popular(beacuse the programming is very easy)
+3.MYSQL server--good RDBMS from Microsoft
+              --it works only with windows os
+Ingres 
+Postgres
+Unify
+DB2
+CICS
+TELON
+IDMS
+Ms Access
+Paraox
+Vatcom SQL
