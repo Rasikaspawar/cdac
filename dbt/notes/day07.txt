@@ -1,0 +1,225 @@
+set operation
+*foundation of RDBMS based on set theory.
+* founder of RDBMS->Dr. E.F.Codd(1968)
+--------------------------------------------------------
+* structure of both the SELECT statements has to be the same.
+* number of columns in both and the corresponding
+
+* select empno, ename from emp1
+	union
+select empno, ename from emp2;
+OUTPUT-:
+	EMPNO  	ENAME
+	1	A
+	2	B
+	3	C
+	4	D
+	5	E
+***UNION-> will combine the output of both the SELECT the statements and it will suppress the duplicates.
+-------------------------------------------------------
+*columns name is different when:*
+	* the column names may be different
+* select empno1, ename from emp1
+		union
+select empno2, ename from emp2;
+	order by 1;
+OUTPUT-:
+	EMPNO1        ENAME
+	1		A
+	2		B
+	3		C
+	4		D
+	5		E
+----------------------------------------------------
+*union all**-
+	 * it is union all will combine the output of both the SELECT statements and the duplicates are not suppressed.
+* select empno1, ename from emp1
+	union all
+ select empno2, ename from emp2;
+	order by 1;
+OUTPUT-:
+	EMPNO1  	ENAME
+	1		A
+	1		A
+	2 		B
+	2		B
+	3		C
+	4		D
+	5		E
+-------------------------------------------------------------
+*Intersect*
+ 	*  intersect will return what is common in both the SELECT statements and the duplicates are suppressed.
+* select empno1, ename from emp1
+	intersect
+  select empno2, ename from emp2;
+	order by 1;
+OUTPUT-:
+	EMPNO1  	ENAME
+	1		A
+	2		B
+-----------------------------------------
+*except*
+* select empno1, ename from emp1
+	except
+  select empno2, ename from emp2;
+	order by 1;
+OUTPUT-:
+	EMPNO1  	ENAME
+	3		C
+* except will return what is present in the first SELECT statement and not present in the second SELECT statement and the duplicates are suppressed.
+----------------------------------------------------------------------
+*union, intersect, union all, except*
+* select .....................
+	 union
+ select .................
+ 	intersect
+(select...................
+ 	union all
+select..................)
+	 except
+select..............
+	 order by x;
+* max upto 255 SELECT statements. this limit of SQL can be exceeded with the help of views.
+(if any commands are write in () then this command are execute is 1st).
+---------------------------------------------------------
+* practical uses:
+ *1). select job from emp where deptno=10
+ 	intersect
+      select job from emp where deptno=20;
+ Output:-
+ manager
+ clerk
+-------------------------------------------
+*2)select job from emp where deptno=10
+ 		except
+    select job from emp where deptno=20;
+ *-Output:-
+ president
+----------------------------------------------
+******************************Pseudocolumns************************
+ * fake colums(virtual columns)
+* its not a column of the table, but you can use it in SELECT statement
+
+E.g.
+ a. computed columns(ANNUAL=sal*12)
+ b.Expressions (NET_EARNINGS=sal+comm-tax)
+ c. Functions-based colums(AVG_SAL = avg(sal),R_SAL=round(sal,-3))
+-----------------------------------------------
+* RDBMS SUPPLIED Pseudocolumns:-
+* ROWID- stands for row identifier
+* rowid is not a column of the table, but you can use it in SELECT statement
+* rowid is the row address.
+* rowid is the actual physical memory location in the DB server HD where that row is located
+* when you SELECT from a table, the order of rows in the output depends on the row address; it will always be in asceding order of Rowid.
+* rowid is  a fixed-length encrypted string of 18 charcters
+* when you INSERT a row, the address(Rowid) is constant for the life of the row.
+* when you UPDATE a row, if the row length is decreasing , then the address (rowid) is will not change.
+* when you UPDATE a row, if the row length is increasing , and if free space is not available, then the address(Rowid) will change.
+* no two rows of any table in the entire DB server HD can have the same Rowid 
+* Rowid works as an unique identifier for every row in the database.
+* Rowid is used by MYSQL to distiguish between two rows in the DB server HD.
+****practicle  uses of rowid:
+	you can use rowid to UPDATE or DELETE the duplicate rows.
+* Rowid used in internally by MYSQL:
+	a. Row locking
+	b. to manage the indexes.
+	c. to manage the cursors
+	d. to distinguish between two rows.
+	e. row management
+	f. etc.
+--------------------------------------------------------------------------------------
+***********************************INDEXES**********************************
+* Indexes are present in all RDBMS,all DBMS, and some of the programming languages also.
+* to speed up the search operation(for faster access).
+* to speed up the SELECT statement with a WHERE clause
+*In mysql , the indexes are automatically invoked by the system as and when required.
+*execution plan -> It is plan created by MySQL as to how it is going to execute the SELECT statement
+* In MYSQL, the indexes are automatically updated by the system for all the DML operations
+*Duplicate values are stored in an index.
+* no upper limit on the number of indexes per table.
+* larger the number of indexes, the slower would be the DML operations.
+*cannot index text and blob columns
+*null values are not stored in an index.
+* if you have 2 or more INDEPENDENT  columns in the WHERE clause, then create separate indexes for each column; MYSQL will use the necesssary indexes as and whrn required.
+* select* from emp where empno=2;
+ select * 
+In other RDBMS:-
+ * insert/update/delete...........;
+REINDEX;
+
+**************composite index 
+ * it is combine 2 or more INTER-DEPENDENT column together in a single index
+* Index-key -> column or set of columns on whose basis the index has been created.
+* in MYSQL, you can combine upto 32 columns in a composite index.
+* index is performing by defalut in ascending manner.
+*
+*select * from emp
+ where deptno=1 and empno=1;
+******************
+***conditions when an index should be created:-
+ * to speed up the SELECT statement with a WHERE clause
+* if SELECT retrieves<25% of table data.
+
+select*from emp where empno=1;
+select* form emp where empno=5;
+select* from emp where empno<2;
+select* from emp where empno>1;
+
+* primary key and unique columns should always be indexed.
+select* from emp where ename='a';
+select* from emp where 
+
+* common columns in join operations should always be indexed
+
+select dname, ename from emp, dept
+where dept.deptno = emp.deptno;
+
+**********************
+* create index indexname on table(column);
+create index i_emp_empno on emp(empno);//i_emp_empno(it is on server/HD)
+create index i_emp_sal on emp(sal);
+create index i_emp_ename on emp(ename);
+e.g = select * from emp where empno=1;
+--------------------------------------------
+* to see which all indexes are created for specific table:-
+show indexes from emp;
+*to see all indexes on all table in the database:-
+ use information_schema;
+select*from statistics;
+* to drop the index:-
+drop index i_emp_empno on emp;
+*create index i_emp_empno on emp(empno desc);
+create index i_emp_empno on emp(deptno,empno);//by default it is ascending
+create index i_emp_empno on emp(deptno desc,empno);
+create index i_emp_empno on emp(deptno ,empno desc);
+* create index i_emp_deptno_empno on emp(deptno desx,empno desc);
+ * create unique index i_emp_empno on emp(empno);
+ 	-> performs one extra function, it won't allow to insert /upadate duplicate value in EMPNO
+	* at the time of creating the unqiue index , if you already have duplicate values inEMPNO,then MYSQL will not allow you to create the unique index.
+-------------------------------------------------------------------------------
+*drop index.....;
+* drop the table...
+* if you drop the table/column, then associated indexes are dropped automatically.
+----------------------------------------
+* types of indexes:-
+ 1.Normal Index
+2. Normal Composite Index
+3. Unique Index
+4. Unique Composite Index
+5.clustered Index
+6.Non-clustered Index
+7. covering Index
+8. Full-Text Index
+9.Filtered Index
+10.Spatial Index
+11.XML Index
+12.Hash Index
+13.Bitmap Index
+14. Index-organized Table
+15. table and Index partitioning
+16. Global and Local Index
+17.Index on Abstract columns
+
+ 
+
+
