@@ -1,0 +1,39 @@
+1) Write a query that will give you all orders for more than Rs. 1,000. 
+-select * from orders
+where Amt>1000;
+----------------------------------------------------
+2)Write a query that will give you the names and cities of all salespeople in 
+London with a commission above .10.
+- select * from salepeople
+where comm >.10 and city = 'London';
+-------------------------------------------------------
+3)Write a query on the Customers table whose output will exclude all customers 
+with a rating <= 100, unless they are located in Rome.
+- select * from customers
+where rating <=100 or city = 'Rome';
+(unless means or)
+-------------------------------------------------------
+4)What will be the output from the following query? 
+ 
+ Select * from Orders 
+ where (amt < 1000 OR 
+ NOT (odate = ‘1990-10-03’ 
+ AND cnum > 2003));
+- output -is shown error becuse 1st cnum is not column present in orders table and 2nd is date assigning way is error ' ' not this way to assign date.
+--correct query is
+Select * from Orders 
+ where (amt < 1000 OR 
+ NOT (odate = '1990-10-03'
+ AND onum > 2003));
+---------------------------------------------------------------
+5)What will be the output of the following query? 
+ Select * from Orders 
+ where NOT ((odate = ‘1990-10-03’ OR snum 
+ >1006) AND amt >= 1500);
+--output -error same as above date is not is write porper mannerr
+---------------------------------------------------------
+6)What is a simpler way to write this query? 
+ Select snum, sname, city, comm From Salespeople 
+where (comm > .12 OR comm <.14);
+-output-select*from salepeople;
+-----------------------------------------------------

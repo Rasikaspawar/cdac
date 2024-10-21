@@ -1,0 +1,61 @@
+1. Select from any table a number and determine whether it is within a given range (for 
+example, between 1 and 10).
+--create table r(num int);
+insert into r values(1),(2),(3),(4);
+delimiter //
+create procedure checknum(in num1 int,in num2 int)
+ begin
+declare fnum int;
+select num into fnum   from r where num between num1 and num2 limit 1;
+ if fnum is not null then
+select concat(fnum,'is between', num1,'and',num2) as resultMsg
+else 
+ select concat (fnum,'is not between',num1,'and',num2)as resultMsg
+end if;
+end //
+delimiter;
+call checknum(3,4);
+select * from r;
+-----------------------------------------------------------
+2. Select from any table three positive integers representing the sides of a triangle, and 
+determine whether they form a valid triangle. Hint: In a triangle, the sum of any two 
+sides must always be greater than the third side.
+-create  table Tt(a int, b int,c int); 
+delimiter//
+ 	create procedure triangle(IN n1 int,IN n2 int,IN  n3 int)
+	begin 
+		declare a  int;
+		declare b int;
+		declare c int;
+ 		set a = n1;
+		set b = n2;
+ 		set c = n3;
+ 		if(a+b>c) AND (a+c>b) AND (b+c>a) then
+			select 'it is a triangle' as resultmsg;
+		else 
+			 select 'it is not a traingle' as resultmsg;
+		end if;
+	end//
+delimiter ;
+call triangle(1,2,3);
+//select * from Tt;
+-------------------------------------------------------------------
+3. Check if a given a year is a leap year. The condition is:- year should be (divisible by 4 
+and not divisible by 100) or (divisible by 4 and divisible by 400.). The year should be 
+Selected from some table.
+-
+ create table l( num int);
+ delimiter //
+ create procedure leapy( in y int)
+begin
+ if ( y%4=0 AND y% 100!=0) OR (y%400=0) then
+ 	select 'it is a leap year' as resultmsg;
+ else 
+	 select 'it is a not leap year' as resultmsg;
+ end if ;
+ end //
+delimiter;
+call leapy(2000);
+-----------------------------------------------
+Q4.4. Write a program that Selects from any table two character strings. Your program should 
+then determine if one character string exists inside another character string.

@@ -1,0 +1,98 @@
+Create the following 3 tables and insert sample data as shown:- 
+ 
+ Ord_mst
+ Ord_no Cust_cd Status 
+ 1 
+ 
+ Ord_dtl
+C1 P 
+ Ord_no Prod_cd Qty 
+ 1 P1 100 
+ 1 
+ 
+ Prod_mst
+P2 200 
+ Prod_cd Prod_name Qty_in_stock Booked_qty 
+ P1 Floppies 10000 1000 
+ P2 Printers 5000 600 
+ P3 Modems 3000 200 
+ 
+1. Write a Before Insert trigger on Ord_dtl. Anytime a row is inserted in Ord_dtl, the 
+Booked_qty in Prod_mst should be increased accordingly.
+-step1:-
+   -create table Ord_mst(Ord_no int (4),Cust_cd varchar(10),Status varchar(10));
+  -insert into Ord_mst values(1,'c1','p');
+Step2:- create table Ord_dtl(Ord_no int(4),Prod_cd varchar(10),Qty int(4));
+       -insert into Ord_dtl values(1,'p1',100),
+    -> (1,'p2',200);
+step3:-create table prod_mst(Prod_cd varchar(10),Prod_name varchar(10),quty_Stock int(8),booked_qty int(4));
+      -insert into prod_mst values('p1','floppies',10000,1000),
+    -> ('p2','printers',5000,600),
+    -> ('p3','modems',3000,200);
+step4:-delimiter //
+mysql> create trigger tt
+    -> before insert on Ord_dtl
+    -> for each row
+    -> begin
+    -> update Prod_mst
+    -> set booked_qty = booked_qty + new.qty
+    -> where Prod_cd = new.Prod_cd ;
+    -> end //
+step5:-delimiter ;
+mysql> insert into Ord_dtl values(1,'p1',200);
+    -> select * from Prod_mst;
+ -----------------------------------------------------------
+Q2.Write a Before Delete trigger on Ord_dtl. Anytime a row is deleted from Ord_dtl, the 
+Booked_qty in Prod_mst should be decreased accordingly.
+- DELIMITER //
+
+ CREATE TRIGGER tp
+    BEFORE DELETE ON Ord_dtl
+     FOR EACH ROW
+     BEGIN
+         UPDATE Prod_mst
+         SET booked_qty = booked_qty - OLD.qty
+         WHERE prod_cd = OLD.prod_cd;
+     END //
+   DELIMITER ;
+ DELETE FROM Ord_dtl WHERE Ord_no = 1 AND Prod_cd = 'P1';
+select * from Prod_mst;
+------------------------------------
+Q3.3. Write a Before Update of Prod_cd, Qty trigger on Ord_dtl. Anytime the Prod_cd or 
+Qty is updated, the Booked_qty in Prod_mst should be increased/decreased 
+accordingly.
+DELIMITER //
+
+CREATE TRIGGER tr_update
+BEFORE UPDATE ON Ord_dtl
+FOR EACH ROW
+BEGIN
+    -- If the product code changes
+    IF OLD.Prod_cd != NEW.Prod_cd THEN
+        -- Adjust for the old product code
+        UPDATE Prod_mst
+        SET booked_qty = booked_qty - OLD.Qty
+        WHERE Prod_cd = OLD.Prod_cd;
+
+        -- Adjust for the new product code
+        UPDATE Prod_mst
+        SET booked_qty = booked_qty + NEW.Qty
+        WHERE Prod_cd = NEW.Prod_cd;
+    ELSE
+        -- If only quantity is being updated
+        UPDATE Prod_mst
+        SET booked_qty = booked_qty + (NEW.Qty - OLD.Qty)
+        WHERE Prod_cd = OLD.Prod_cd;
+    END IF;
+END //
+
+DELIMITER ;
+
+
+DELIMITER ;
+
+delimiter ;
+insert into Ord_dtl values(1,'p2', 300)
+select * from Prod_mst;
+delet from Ord_dtl where ord_no =1 and prod_cd = 'p1';
+select *from prod_mst;

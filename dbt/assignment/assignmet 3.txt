@@ -1,0 +1,7 @@
+Q1. Does ANSI recognize the data type DATE?
+---yes, ANSI recognize the data type date.
+	by default date format is 'YYYY-MM-DD'.
+--RANGE OF THE DATE-1st Jan 1000 AD to 31st Dec 9999AD
+-------------------------------------------------------
+2. Which subdivision of SQL is used to insert values in tables?
+-INSERT commond is part of DML (data manipulation language) subdivision

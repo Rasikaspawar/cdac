@@ -1,0 +1,12 @@
+1) Write a query that lists each order number followed by the name of the customer 
+who made the order.
+-select onum, cname from orders,customers where customers.cnum=orders.cnum;
+----------------------------------------------------------------------------------
+2).Write a query that gives the names of both the salesperson and the customer for 
+each order along with the order number.
+-select sname,cname,onum from salepeople,customers,orders where customers.snum=orders.snum and orders.snum = salepeople.snum order by onum desc;
+----------------------------------------------------------------------------------
+3) Write a query that produces all customers serviced by salespeople with a 
+commission above 12%. Output the customer’s name, the salesperson’s name, 
+and the salesperson’s rate of commission.
+- SELECT c.cname, s.sname, s.comm FROM customers c JOIN salepeople s ON c.snum = s.snum WHERE s.comm > 0.12;

@@ -1,0 +1,14 @@
+) Which field of the Customers table is the primary key?
+--in customer table primary key is snum.
+---------------------------------------------------
+) What is the 4th column of the Customers table?
+-- select 
+----------------------------------------------------
+What is another word for row? For column?
+-row-tuple,entity
+column-attributes,key.
+
+---------------------------------------------------
+ Why isn’t it possible to see the first five rows of a table?
+-
+-----------------------------------

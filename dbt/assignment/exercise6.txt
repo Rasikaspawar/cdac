@@ -1,0 +1,47 @@
+1. Write a stored procedure by the name of Comp_intr to calculate the amount of 
+interest on a bank account that compounds interest yearly. The formula is:- I 
+= p (1+ r) y
+– p 
+where:- 
+ I is the total interest earned. 
+ p is the principal. 
+ r is the rate of interest as a decimal less than 1, and 
+ y is the number of years the money is earning interest.
+--create table CI ( interest decimal(7,2),total_amount decimal(10,2));
+delimiter //
+ create procedure Comp_intr(in  p decimal(7,2), in r decimal(7,2), in y decimal(7,2))
+ begin 
+ declare interest decimal(7,2);
+declare total_amount decimal(7,2);
+set interest = p*(power((1+r),y)-1);
+ set total_amount = p+interest;
+insert into CI (interest , total_amount) values(interest,total_amount);
+end //
+ delimiter ;
+ call Comp_intr(1000.0,0.12,3.0);
+select * from CI;
+---------------------------------------------------------
+Q2.Create a stored function by the name of Age_calc. Your stored function should 
+accept the date of birth of a person as a parameter. The stored function should 
+calculate the age of the person in years. The stored function should return the age 
+in years
+-
+  create table y( age int);
+ delimiter //
+mysql> create function Age_calc(dob DATE)
+    -> returns int
+    -> Deterministic
+    -> Begin
+    -> declare age int;
+    -> set age = YEAR(CURDATE())-YEAR(dob);
+    -> if (MONTH(CURDATE())<MONTH(dob)) OR (MONTH(CURDATE())=MONTH(dob) AND DAY(CURDATE())<DAY(dob))THEN
+    -> set age = age-1;
+    -> end if;
+    -> return age;
+    -> end //
+     delimiter ;
+ insert into y(age) values(Age_calc('1997-07-06'));
+select * from y;
+---------------------------------------
+
+ 

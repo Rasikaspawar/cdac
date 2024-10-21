@@ -1,0 +1,80 @@
+3)Convert a temperature in Fahrenheit (F) to its equivalent in Celsius (C) and vice 
+versa. The required formulae are:- C= (F-32)*5/9, F= 9/5*C + 32
+-- create table temprature(Fahrenheit Decimal, celsius Decimal);
+delimiter //
+ create procedure convert_temperature(in temp decimal,in unit char(1))
+     begin
+     declare f decimal;
+     declare c decimal;
+     if unit = 'F' then
+     set c = (temp -32)*5/9;
+     set f = temp;
+     elseif unit ='c' then
+     set f = (9/5)* temp+32;
+     set c = temp;
+     end if;
+     insert into temprature values(f,c);
+     end //
+delimiter ;
+call convert_temperature(32,'F');
+ call convert_temperature(0,'c');
+select * from temprature;
+--------------------------------------
+Q4.Convert a number of inches into yards, feet, and inches. For example, 124 inches 
+equals 3 yards, 1 foot, and 4 inches.
+-create table n( feet int, yard int,inches int);//table creation is complusrory
+ delimiter //
+ create procedure conversion_inches( in temp int)
+ begin 
+ declare feet int;
+ declare yard int;
+ declare r_inches int;
+ set yard  = temp div 36;
+set r_inches  = temp mod 36;
+ set feet =r_inches div 12;
+set r_inches  = r_inches mod 12;
+insert into n values( feet,yard,r_inches);
+end //
+ delimiter ;
+ call conversion_inches( 124);
+select * from n;
+---------------------------------------------
+Q5.. Write a program that enables a user to input an integer. The program should then 
+state whether the integer is evenly divisible by 5.
+- create table n1( num int);
+ delimiter //
+ create procedure num1(in N int)
+ begin
+ declare ans  int;
+ set ans = mod(N,5);
+ if ans =0 then
+insert into n1 (num) values (N);
+  select ' it is divide by 5' as result;
+else
+ select ' it is not divide  by 5' as result;
+end if;
+end //
+ delimiter ;
+ call num1(35);
+ select * from n1;
+-----------------------------------------
+Q6.Your block should read in two real numbers and tell whether the product of the two 
+numbers is equal to or greater than 100
+- create table  n2( nu1 int,nu2 int);
+delimiter //
+create procedure nu1( in N int, in N1 int)
+ begin 
+ declare  number1 int default N;
+ declare number2 int default N1;
+declare ans  int;
+set ans =number1*number2;
+ if ans>=100 then
+ insert into n2 (nu1,nu2)values( N ,N1);
+ select 'product is greater than 100';
+ end if;
+ end //
+ delimiter ;
+ call nu1( 2 , 50);
+ select * from n2;
+--------------------------------------------------------------
+ 
