@@ -1,0 +1,37 @@
+body{
+    background-image: url('i6.jpg');
+    background-size: 100%;
+   
+}
+
+.logo{
+    color: #96d10c;
+    font-size: 100px;
+    font-family: Arial;
+    padding:center;
+    float:top;
+    padding-top: 10px;
+    text-align:center;
+}
+ul{
+    float:left;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+ul li{
+    list-style: none;
+    margin-left: 70px;
+    margin-top: 0px;
+    font-size: 35px;
+}
+ul li a{
+    text-decoration: rgb(199, 137, 21);
+    color: rgb(134, 25, 236);
+    font-family: Arial;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+ul li a:hover{
+    color: coral;
+}
