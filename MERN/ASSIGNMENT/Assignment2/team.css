@@ -1,0 +1,112 @@
+body{
+    background-image: url('i5.jpg');
+    background-position: 100%;
+    margin: 0;
+    padding: 0;
+}
+.main{
+    width: 100%;
+    background: linear-gradient(to top,rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%),url(im.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 109vh;
+}
+.navbar{
+    width: 1200px;
+    height: 80px;
+    margin: auto;
+}
+.icon{
+    width: 500px;
+    float: left;
+    height: 70px;
+}
+.logo{
+    color: #96d10c;
+    font-size: 150px;
+    font-family: Arial;
+    padding: left-1;
+    float:center;
+    padding-top: 10px;
+    text-align: center;
+}
+.menu{
+    width: 700px;
+    float: right;
+    height: 70px;
+}
+ul{
+    float:left;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+ul li{
+    list-style: none;
+    margin-left: 50px;
+    margin-top: 400px;
+    font-size: 35px;
+}
+ul li a{
+    text-decoration: mediumvioletred;
+    color: rgb(253, 236, 236);
+    font-family: Arial;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+ul li a:hover{
+    color: coral;
+}
+.btn{
+    width: 100%;
+    height: 40px;
+    background: #96d10c;
+    border: 2px solid #96d10c;
+    margin-top: 13px;
+    color: #ffffff;
+    font-size: 15px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.btn:focus{
+    outline: none;
+}
+.form{
+    width: 350px;
+    height: 460px;
+    background: linear-gradient(to bottom,rgba(212, 192, 192, 0.8)50%,rgba(158, 151, 151, 0.8)50%);
+    position: relative;;
+    top:90px;
+    left: 1150px;
+    border-radius: 20px;
+    padding: 30px;
+}
+.form h2{
+    width: 220px;
+    font-family: sans-serif;
+    text-align: center;
+    color:red;
+    font-size:27px;
+    background-color:rgb(11, 221, 134) ;
+    border-radius: 10px;
+    margin:2px;
+    padding: 8px;
+
+}
+.form input{
+    width: 240px;
+    height: 35px;
+    background: transparent;
+    border-bottom: 10px steelblue;
+    border-top:royalblue;
+    border-right: none;
+    border-left: none;
+    color: rgb(16, 17, 16);
+    font-size:15px;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    font-family: sans-serif;
+}
+.form input:focus{
+    outline: auto;
+}
