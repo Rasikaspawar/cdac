@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CRICKET BATTING NUMBERS</h1>
+    <p id="p1">
+        <select id ="battingnumber">
+         <option value="1" >1</option>
+         <option value="2">2</option>
+         <option value ="3">3</option>
+         <option value ="4">4</option>
+         <option value ="5">5</option>
+        </select>
+        <button id = "removebutton">remove</button>
+    </p>
+    <script>
+        const removebutton= document.querySelector('#removebutton');//removebutton hi button chi id ahe ji removebutton varabile madhe store keley
+         const battingnumber =document.querySelector('#battingnumber');//hi drop down chi id ahe tyatle sagle element battingnumber varible madhe store kele
+         removebutton.addEventListener('click',()=>{
+             const selectedOption = battingnumber.options[battingnumber.selectedIndex];
+            if (selectedOption) {
+                battingnumber.removeChild(selectedOption);//only remove likha to sequencely index element chale jange or if we want to selected index element jaye to hame removeChild likhna padega
+            }
+        });
+    </script>
+</body>
+</html>

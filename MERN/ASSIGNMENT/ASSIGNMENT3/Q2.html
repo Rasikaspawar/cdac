@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Registration</h1>
+<form id="f">
+  <input type="text" placeholder="enter first name" name="fname"><br><Br>
+  <input type="text" placeholder="enter last anme" name="lname"><br><Br>
+  <input type ="text" placeholder="enter mobile nu" name="Contact"><br><br>
+  <input type ="text" placeholder="enter your mail-id" name="mail"><br><br>
+  <button type="submit">Submit</button>
+</form>
+<p id="para"></p>
+<script>
+const fdata = document.querySelector("#f");
+const parap  = document.querySelector("#para");
+
+fdata.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const fd = new FormData(fdata);
+  const fn = fd.get('fname');
+  const ln = fd.get('lname');
+  const c = fd.get('Contact');
+  const email = fd.get('mail');  
+  parap.innerText = `First Name: ${fn},\nLast Name: ${ln},\nContact: ${c},\nmail: ${email}`;
+  
+});
+</script>
+</body>
+</html>

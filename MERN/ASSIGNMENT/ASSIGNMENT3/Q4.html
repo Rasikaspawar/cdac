@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        b{
+            font-weight: bold;
+            color: black;
+        }
+        .highlight{
+            font-weight: bold;
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <a style="text-decoration:none;" href="#"onmouseover="highlightBold()" onmouseout="normalHighlight()">on mouse over here bold words of the following paragraph will be highlighted</a>
+    </p>
+    <p>
+        we have just started <b> this </b> section for the user(<b>  beginner) </b> to intermediate)who <b> want </b> to work with <b> various </b> JavaScript <b> problems </b> and write scripts online to <b> test </b> their JavaScript <b> skill. </b>
+    </p>
+    <script>
+        function highlightBold(){
+            const boldtest=document.querySelectorAll("p b");
+            boldtest.forEach(word=>word.classList.add("highlight"));
+        }
+         function normalHighlight(){
+             const boldtest =document.querySelectorAll("p b");
+             boldtest.forEach(word=>word.classList.remove("highlight"));
+
+         }
+    </script>
+</body>
+</html>

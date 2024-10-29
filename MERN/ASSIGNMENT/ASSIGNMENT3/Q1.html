@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+ <style>
+#container{
+    width: 500px;
+    height: 200px;
+    border: 2px solid black;
+    text-align: center;
+    margin:auto;
+     line-height: 1.6;
+    font-size: medium;
+    background-color: coral; 
+}
+
+ </style>
+</head>
+<body>
+    <div id="container">
+    <p id ="mypara"> It is rightly said that being disciplined is essential in life.when a person leads a dislplined life, they set an easy path to
+        success.They will develop an approach to happiness and a beautiful future ahead.Being disciplined is the practice of habving a scheduled daily rountine which helps an individul to be 
+        punctual and hard-working.An individual is taught what being disciplined means from the time they are young.Even though discipline takes a lot of effort, the advantages of a disciplined life make it a worthwhile endeavour.
+    <br><br>
+        <button onclick= "changeStyle()" id ="sub">MAGIC</button>
+        </p>
+        </div>
+       
+    <script>
+        function changeStyle(){
+            const paragraph = document.getElementById("mypara");
+            paragraph.style.fontsize ="20%";
+            paragraph.style.fontFamily = "Arial, sans-serif"; // Change to your desired font family
+            paragraph.style.color = "yellow"; // Change to your desired color
+        }
+    </script>
+</body>
+</html>
