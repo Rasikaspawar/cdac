@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     function forEach(array,callback){
+         array.forEach((value,index)=>{
+             callback(value,index);
+         });
+         }
+    forEach([10,20,30,40,50],(value,index)=>{
+                let newvalue = value*2;
+            console.log(`index:${index},value:${newvalue}`);
+     });
+    </script>
+</body>
+</html>

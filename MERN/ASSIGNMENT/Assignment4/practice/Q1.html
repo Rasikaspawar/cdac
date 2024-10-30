@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function toLowerCase(str){
+            return str.toLowerCase();
+        }
+        function processdata(string,callback){
+            const result = callback(string);
+            console.log(result);
+        }
+         processdata("RASIKA",toLowerCase);
+    </script>
+</body>
+</html>
