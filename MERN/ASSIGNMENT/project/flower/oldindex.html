@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!--code for font awsome cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel ="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <a href="#" class ="logo"><i class="fa fa-shopping-basket"></i>Grocery</a>
+        <nav class="navbar">
+        <a href="#Home"> Home</a>
+        <a href="#About"> About us </a>
+        <a href="#Product"> Product list</a>
+        <a href="#Categories"> Categories</a>
+        <a href="#contact"> Contact us</a>
+        </nav>
+
+        <div class="icons">
+            <div class="fa fa-bars" id= "menu-btn"></div>
+            <div class="fa fa-search" id= "search-btn"></div>
+            <div class="fa fa-shopping-cart" id= "cart-btn"></div>
+            <div class="fa fa-user" id ="login-btn"></div> 
+        </div>
+        <form class="search-form">
+            <input type="search" id="search-box" placeholder="Search here">
+            <label for ="search-box" class="fa fa-search"></label>
+        </form>
+
+        <div class="shopping-cart">
+            <div class ="box">
+                <i class="fa fa-trash"></i>
+                <img src="image/cart-img-1.png">
+                <div class="content">
+                    <h3>watermelon</h3>
+                    <span class="price">40 Rs/-</span>
+                    <span class="Quntatity"> Qty : 1</span>
+                </div>
+            </div>
+            <div class ="box">
+                <i class="fa fa-trash"></i>
+                <img src="image/cart-img-2.png">
+                <div class="content">
+                    <h3>onion</h3>
+                    <span class="price">40 Rs/-</span>
+                    <span class="Quntatity"> Qty : 1</span>
+                </div>
+             </div>
+                
+             <div class="total">Total:80 Rs </div>
+                <button class="btn btn-success">Buy now</button>  
+        </div>
+        <form action="#" class="login-form">
+            <h3>login now</h3>
+            <input type="email" placeholder="Enter valid email" class="box">
+            <input type ="password" placeholder="Enter password" class="box">
+            <p>Forget  your password <a href="#">  Click here </a></p>
+            <p> Dont have An Account <a href="#"> create Now</a></p>
+            
+            <button class="btn btn-success">login here</button>
+        </form>
+    </header>
+        <section class="Home" id="Home">
+            <div class="content">
+                <h3>Fresh and <span>Organic</span> Products for you</h3>
+                <p>Odered on our websites and enjoy fresh and Organic foods</p>
+                <button class="btn btn-success" href="Product">Shop now</button>
+            </div>
+        </section>
+        <section  class ="features" id="features">
+            <h1 class="heading">About<span> us</span></h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                    <div class="box text-center">
+                         <img src="image/feature-img-1.png"class="img-fluid" alt="Fresh and Organic">
+                         <h3>fresh and Organic</h3>
+                         <a href="#" class="btn btn-success "data-description="Our Fresh and Organic products are sourced directly from farms."
+                         class="read-more">Read more</a>
+                    </div>
+                 </div>
+            
+                <div class="col-md-4">
+            <div class="box text-center">
+                <img src="image/feature-img-2.png"class="img-fluid" alt="Fresh and Organic">
+                <h3>Fast delivery</h3>
+                <a href="#" class="btn btn-success" data-description="We ensure your orders are delivered in the shortest time possible." 
+                class="read-more">Read more</a>
+            </div>
+        </div>
+        
+            <div class="col-md-4">
+        <div class="box text-center">
+            <img src="image/feature-img-3.png"class="img-fluid" alt="Fresh and Organic">
+            <h3>Easy to payment</h3>
+            <a href="#" class="btn btn-success" data-description="Our payment process is simple and secure." 
+            class="read-more" >Read more</a>
+        </div>
+    </div>
+                </div>
+                </div>
+                
+        </section>
+        !-- Modal -->
+        <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Description</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="modalDescription">
+                        <!-- Description will be inserted here -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.read-more').on('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            const description = $(this).data('description'); // Get the description from data attribute
+            $('#modalDescription').text(description); // Set the description in the modal
+            $('#descriptionModal').modal('show'); // Show the modal
+        });
+    });
+</script>
+<script src="javascript/script.js"> </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" type="text/css" href="css/feedback.css">
+    <style>
+        .success-message {
+            color: green;
+            margin-top: 20px;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+    <div class="text-center mt-4">
+        <a href="index.html" class="btn btn-success">Go to Home</a>
+    </div>
+    <section class="feedback" id="feedback">
+        <h1 class="heading">We Value Your <span>Feedback</span></h1>
+        <div class="container">
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="feedback">Your Feedback:</label>
+                    <textarea id="feedback" name="feedback" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Feedback</button>
+            </form>
+            <div class="text-center mt-4">
+                
+            </div>
+            <div id="success-message" class="success-message">Thank you for your feedback!</div>
+        </div>
+    </section>
+    
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevents the default form submission
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const feedback = document.getElementById('feedback').value;
+
+            console.log('Name:', name);
+            console.log('Email:', email);
+            console.log('Feedback:', feedback);
+
+            // Display success message
+            const successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'block'; // Show the success message
+
+            // Optionally, you could reset the form
+            this.reset(); // Resets the form
+        });
+    </script>
+</body>
+</html>
